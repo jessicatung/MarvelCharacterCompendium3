@@ -1,24 +1,32 @@
-function _ajaxClient(characterID){
-		var ajaxRequest = $.ajax({
-			url: '/characters',
-			type: 'GET',
-			data: {char_id: characterID}
-		});
-		ajaxRequest.done(function(){console.log('it worked')})
+$(document).ready(function () {
+	console.log("hey")
+	// $('form').submit(getInput);
+	// $(document).on();
+	bindEvents();
+
+});
+
+function bindEvents(){
+	console.log("in bindEvents");
+	var $container = $(".container");
+	$container.on("submit", '.getCharId', getInput);
 }
 
 function getInput(){
-		event.preventDefault();
-		var characterID = $("input").val();
-		_ajaxClient(characterID);
+	console.log("in getInput function");
+	event.preventDefault();
+	var characterID = $("input").val();
+	_ajaxClient(characterID);
 }
 
-$(document).ready(function () {
-	console.log("heY@")
-	// $('form').submit(getInput);
-	$(document).on("submit", 'form', getInput);
+function _ajaxClient(characterID){
+	event.preventDefault();
+	var ajaxRequest = $.ajax({
+		url: '/characters',
+		type: 'GET',
+		data: {char_id: characterID}
+	});
+	ajaxRequest.done(function(){console.log('it worked')})
+}
 
 
-
-  // Optional - Use AJAX to send an HTTP DELETE request for the sign-out link
-});
