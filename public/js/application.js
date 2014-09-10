@@ -26,7 +26,13 @@ function _ajaxClient(characterID){
 		type: 'GET',
 		data: {char_id: characterID}
 	});
-	ajaxRequest.done(function(){console.log('it worked')})
+	ajaxRequest.done(appendName);
+}
+
+function appendName(response){
+	console.log('it worked');
+	console.log(response);
+	$('.charNames').append(response);
 }
 
 
