@@ -12,7 +12,7 @@ function bindEvents(){
 }
 
 function getInput(){
-	console.log("in getInput function");
+	// console.log("in getInput");
 	event.preventDefault();
 	var character = $("input").val();
 	_ajaxClient(character);
@@ -30,28 +30,24 @@ function _ajaxClient(character){
 }
 
 function appendElements(response){
-	console.log(response);
-	// console.log(response.thumbnail);
-	// console.log(response.series1);
-	// console.log(response.series2);
-	// console.log(response.name);
+	// console.log(response);
 
+	//  Clear dom elements inside appendedEls div and clear input
 	$('.appendedEls').empty();
 	$('.char_name').val('');
 
+	// Append empty divs so can append name, thumbnail, series 
 	$('.appendedEls').append('<div class="charName"> </div>');
 	$('.appendedEls').append('<div class="charThumb"> </div>');
 	$('.appendedEls').append('<div class="series"> </div>');
 
+	// Append name, thumbnail, series
 	$('.charName').append('<h2>' + response.name + '</h2>');
-	// Append link to Thumbnail
 	$('.charThumb').append('<img src="' + response.thumbnail + '/portrait_fantastic.jpg">');
 	
 	for (var i=0; i < response.series.length; i++){
 		$('.series').append('<p>'+response.series[i]+'</p>');
 	}
-	// $('.series').append(response.series1);
-	// $('.series').append(response.series2);
 }
 
 
