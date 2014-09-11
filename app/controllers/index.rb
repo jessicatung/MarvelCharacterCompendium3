@@ -29,6 +29,10 @@ get '/characters' do
   # Thumbnail parse
   thumbnail_link = marvel_json.parsed_response["data"]["results"][0]["thumbnail"]["path"]
 
+  # Description parse
+  description = marvel_json.parsed_response["data"]["results"][0]["description"]
+  # p description
+
   # Series parse
   # p marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
 
@@ -42,7 +46,7 @@ get '/characters' do
   end
 
   content_type :json
-  {name: name, thumbnail: thumbnail_link, series: series}.to_json
+  {name: name, thumbnail: thumbnail_link, description: description, series: series}.to_json
 
 end
 
