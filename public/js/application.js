@@ -40,12 +40,16 @@ function appendElements(response){
 	$('.appendedEls').append('<div class="charName"> </div>');
 	$('.appendedEls').append('<div class="charThumb"> </div>');
 	$('.appendedEls').append('<div class="description"> </div>');
+	$('.appendedEls').append('<div class="series_num"> </div>');
 	$('.appendedEls').append('<div class="series"> </div>');
 
 	// Append name, thumbnail, desc, series
 	$('.charName').append('<h2>' + response.name + '</h2>');
 	$('.charThumb').append('<img src="' + response.thumbnail + '/portrait_fantastic.jpg">');
-	$('.charName').append('<h3>' + response.description + '</h3>');
+	$('.description').append('<h5>' + response.description + '</h5>');
+	$('.series_num').append('<h3> Appears in: ' + response.series_num + ' different Marvel series! </h3>');
+
+	$('.series').append('<h4> Here\'s some to get you started: </h4>');
 
 	
 	for (var i=0; i < response.series.length; i++){
