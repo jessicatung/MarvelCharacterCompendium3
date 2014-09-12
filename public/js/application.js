@@ -1,5 +1,4 @@
 $(document).ready(function () {
-	// console.log("hey");
 
 	bindEvents();
 
@@ -27,10 +26,12 @@ function _ajaxClient(character){
 		dataType: "json"
 	});
 	ajaxRequest.done(appendElements);
+	ajaxRequest.fail(responseFail);
 }
 
-function appendElements(response){
-	console.log(response);
+function appendElements(response, status){
+	// console.log(status);
+	// console.log(response);
 
 	//  Clear dom elements inside appendedEls div and clear input
 	$('.appendedEls').empty();
@@ -57,4 +58,15 @@ function appendElements(response){
 	}
 }
 
+function responseFail(response, status){
+	// console.log(status);
+	// console.log(response);
+	
+	// Displays error message to user if character is not found
+	if (response.status == 404){
+		$('.char_name').val('');
+		$('.appendedEls').empty();
+		$('.appendedEls').append('<p>This character does not exist in the Marvel Comics API, please try a different character.</p>');	
+	}
+}
 
