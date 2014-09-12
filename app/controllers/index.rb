@@ -3,7 +3,6 @@ require 'json'
 require 'digest/md5'
 
 get '/' do 
-
   erb :index
 end
 
@@ -23,7 +22,7 @@ get '/characters' do
   @marvel_response = HTTParty.get(route)
   marvel_json = @marvel_response
   
-# Name parse
+# NAME PARSE
   if (marvel_json.parsed_response["data"]["results"].empty?)
     status 404
     p "404 issue"
@@ -33,18 +32,17 @@ get '/characters' do
   end
 
  
-# Thumbnail parse
+# THUMBNAIL PARSE
   thumbnail_link = marvel_json.parsed_response["data"]["results"][0]["thumbnail"]["path"]
 
-# Description parse
+# DESCRIPTION PARSE
   description = marvel_json.parsed_response["data"]["results"][0]["description"]
   # p description
 
-# Series parse
+# SERIES PARSE
 
 # Gets total num of series character appears in.
   series_avail = marvel_json.parsed_response["data"]["results"][0]["series"]["available"]
-  # p series_avail
 
   series = []
 
