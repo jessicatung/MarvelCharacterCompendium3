@@ -1,17 +1,14 @@
 $(document).ready(function () {
-
 	bindEvents();
 
 });
 
 function bindEvents(){
-	// console.log("in bindEvents");
 	var $container = $(".container");
 	$container.on("submit", '.getChar', getInput);
 }
 
 function getInput(){
-	// console.log("in getInput");
 	event.preventDefault();
 	var character = $("input").val();
 	_ajaxClient(character);
@@ -30,9 +27,6 @@ function _ajaxClient(character){
 }
 
 function appendElements(response, status){
-	// console.log(status);
-	// console.log(response);
-
 	//  Clear dom elements inside appendedEls div and clear input
 	$('.appendedEls').empty();
 	$('.char_name').val('');
@@ -58,10 +52,7 @@ function appendElements(response, status){
 	}
 }
 
-function responseFail(response, status){
-	// console.log(status);
-	// console.log(response);
-	
+function responseFail(response, status){	
 	// Displays error message to user if character is not found
 	if (response.status == 404){
 		$('.char_name').val('');
