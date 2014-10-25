@@ -33,11 +33,17 @@ get '/characters' do
 
   # Series parse
   p marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
-  series = marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
-  series2 = marvel_json.parsed_response["data"]["results"][0]["series"]["items"][1]["name"]
+  # series = marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
+  # series2 = marvel_json.parsed_response["data"]["results"][0]["series"]["items"][1]["name"]
+
+  series = []
+
+  10.times do |i|
+  	series << marvel_json.parsed_response["data"]["results"][0]["series"]["items"][i]["name"]
+  end
 
   content_type :json
-  {name: name, thumbnail: thumbnail_link, series1: series, series2: series2}.to_json
+  {name: name, thumbnail: thumbnail_link, series: series}.to_json
 
 end
 
