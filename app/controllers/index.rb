@@ -24,22 +24,21 @@ get '/characters' do
   marvel_json = @marvel_response
   
   # Name parse
-  p marvel_json.parsed_response["data"]["results"][0]["name"]
   name = marvel_json.parsed_response["data"]["results"][0]["name"]
  
   # Thumbnail parse
-  p marvel_json.parsed_response["data"]["results"][0]["thumbnail"]["path"]
   thumbnail_link = marvel_json.parsed_response["data"]["results"][0]["thumbnail"]["path"]
 
   # Series parse
-  p marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
-  # series = marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
-  # series2 = marvel_json.parsed_response["data"]["results"][0]["series"]["items"][1]["name"]
+  # p marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
 
   series = []
 
-  10.times do |i|
-  	series << marvel_json.parsed_response["data"]["results"][0]["series"]["items"][i]["name"]
+  until series.length >= 10 do
+  	series_item = marvel_json.parsed_response["data"]["results"][0]["series"]["items"].sample["name"]
+  	unless series.include?(series_item)
+	  	series << series_item
+	  end
   end
 
   content_type :json
