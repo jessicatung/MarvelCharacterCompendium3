@@ -35,8 +35,6 @@ get '/characters' do
 
 # Series parse
 
-    # p marvel_json.parsed_response["data"]["results"][0]["series"]["items"][0]["name"]
-
 # Gets total num of series character appears in.
   series_avail = marvel_json.parsed_response["data"]["results"][0]["series"]["available"]
   # p series_avail
