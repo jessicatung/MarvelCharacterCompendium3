@@ -1,7 +1,6 @@
 $(document).ready(function () {
 	console.log("hey")
-	// $('form').submit(getInput);
-	// $(document).on();
+
 	bindEvents();
 
 });
@@ -24,16 +23,26 @@ function _ajaxClient(character){
 	var ajaxRequest = $.ajax({
 		url: '/characters',
 		type: 'GET',
-		data: {char_name: character}
+		data: {char_name: character},
+		dataType: "json"
 	});
-	ajaxRequest.done(appendName);
+	ajaxRequest.done(appendElements);
 }
 
-function appendName(response){
+function appendElements(response){
 	console.log('it worked');
 	console.log(response);
+	console.log(response.thumbnail);
+	console.log(response.series1);
+	console.log(response.series2);
+	console.log(response.name);
+
+	$('.charName').append(response.name);
 	// Append link to Thumbnail
-	$('.charNames').append('<img src="' + response + '/portrait_fantastic.jpg">');
+	$('.charThumb').append('<img src="' + response.thumbnail + '/portrait_fantastic.jpg">');
+	$('.series').append(response.series1, "<br>", response.series2);
+	// $('.series').append(response.series1);
+	// $('.series').append(response.series2);
 }
 
 
