@@ -24,7 +24,14 @@ get '/characters' do
   marvel_json = @marvel_response
   
 # Name parse
-  name = marvel_json.parsed_response["data"]["results"][0]["name"]
+  if (marvel_json.parsed_response["data"]["results"].empty?)
+    status 404
+    p "404 issue"
+    return
+  else
+    name = marvel_json.parsed_response["data"]["results"][0]["name"]
+  end
+
  
 # Thumbnail parse
   thumbnail_link = marvel_json.parsed_response["data"]["results"][0]["thumbnail"]["path"]
